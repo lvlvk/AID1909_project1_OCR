@@ -1,0 +1,37 @@
+{% extends "module.html" %}
+
+{% block title %}
+    <title>车牌识别</title>
+{% endblock title %}
+
+{% block pannelocr %}
+    <span class="active">车牌识别</span>
+{% endblock pannelocr %}
+
+{% block contentleft %}
+    {% if fname == None or fname == "" %}
+        <img src="/static/cat.jpg">
+    {% else %}
+        <img src="/static/{{fname}}">
+    {% endif %}
+{% endblock contentleft %}
+
+{% block contentright %}
+<div>
+    <form action="/ocr" method="get">
+        <div>
+                <input type="file" name="filename">
+        </div>
+        <div>
+        <input type="submit" value="显示图片">
+        </div>
+    </form>
+</div>
+<div>
+    <button>识别</button>
+</div>
+{% endblock contentright %}
+
+{% block script %}
+{% endblock script %}
+

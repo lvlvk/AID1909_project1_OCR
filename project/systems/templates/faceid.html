@@ -1,0 +1,33 @@
+{% extends "module.html" %}
+
+{% block title %}
+    <title>人脸识别</title>
+{% endblock title %}
+
+{% block pannelfaceid %}
+    <span class="active">人脸识别</span>
+{% endblock pannelfaceid %}
+
+{% block contentleft %}
+    {% if fname == None or fname == "" %}
+        <img src="/static/cat.jpg">
+    {% else %}
+        <img src="/static/{{fname}}">
+    {% endif %}
+{% endblock contentleft %}
+
+{% block contentright %}
+<div>
+    <form action="/faceid" method="get">
+        <div>
+                <input type="file" name="filename">
+        </div>
+        <div>
+        <input type="submit" value="显示图片">
+        </div>
+    </form>
+</div>
+<div>
+    <button>识别</button>
+</div>
+{% endblock contentright %}

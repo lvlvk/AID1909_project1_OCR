@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    {% block title %}
+    <title>模板页</title>
+    {% endblock title %}
+    <style>
+        div{
+            text-align: left;
+        }
+        /* 导航栏样式 */
+        #pannel{
+            height: auto;
+            margin: 5px;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        /* 导航栏元素的样式 */
+        #pannel>div>span{
+            color: darkcyan;
+            font-size: 36px;
+            line-height: 36px;
+            margin: 10px;
+            padding: 3px;
+            cursor: pointer;
+        }
+        /* 导航栏元素激活时的样式 */
+        .active{
+            border-bottom: 5px solid black;
+        }
+        .inactive{
+            border:0px
+        }
+        #pannel>div{
+            width: 80%;
+            margin: 0 auto;
+        }
+        #content{
+            width: 80%;
+            margin: 0 auto;
+            height: 600px;
+            border: 2px solid transparent;
+        }
+        #content>div{
+            height: 100%;
+            color: black;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        #content>.left{
+            float: left;
+            width: 60%;
+            border-right: 2px solid darkkhaki;
+        }
+        #content .right{
+            float:right;
+            width: 40%;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="pannel">
+        <div>
+            {% block pannel %}
+            {% block pannelindex %}
+            <span class="inactive">首页</span>
+            {% endblock pannelindex %}
+            {% block pannelfaceid %}
+            <span class="inactive">人脸识别</span>
+            {% endblock pannelfaceid %}
+            {% block pannelocr %}
+            <span class="inactive">车牌识别</span>
+            {% endblock pannelocr %}
+            <!-- <span class="active">模板</span> -->
+            {% endblock pannel %}
+        </div>
+    </div>
+    <div id="content">
+        {% block content %}
+        <div class="left">
+            {% block contentleft %}
+            左边
+            {% endblock contentleft %}
+        </div>
+        <div class="right">
+            <div>
+            {% block contentright %}
+            右边
+            {% endblock contentright %}
+            </div>
+        </div>
+        {% endblock content %}
+    </div>
+    <script>
+        $(function () {
+            $("#pannel span").on("click", function () {
+                // console.log($(this).text());
+                if ($(this).text() == "首页") {
+                    document.location.href = "/";
+                }else if ($(this).text() == "人脸识别") {
+                    document.location.href = "/faceid";
+                }else if ($(this).text() == "车牌识别") {
+                    document.location.href = "/ocr";
+                }
+            });
+
+            // $(function () {
+            //     $("input[name=filename]").on("change", function () {
+            //         $("img").prop("src", "/static/" + $(this).val().split("\\").pop());
+            //     });
+            // });
+
+            // var halfWidth = (($("#content>.left *").parent().width() - $("#content>.left *").width()) / 2).toString() + "px";
+            // var halfHeight = (($("#content>.left *").parent().height() - $("#content>.left *").height()) / 2).toString() + "px";
+            // $("#content>.left *").css("position","relative").css("top", halfHeight).css("left", halfWidth);
+        });
+    </script>
+    {% block script %}
+    {% endblock script %}
+</body>
+</html>
