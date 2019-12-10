@@ -1,0 +1,37 @@
+/* 容器基础样式 */
+div{
+    text-align: center;
+}
+
+/* 导航栏样式 */
+#pannel{
+    height: auto;
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgray;
+}
+/* 导航栏元素的样式 */
+#pannel>span{
+    color: darkcyan;
+    font-size: 36px;
+    line-height: 36px;
+    margin: 10px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+/* 导航栏元素激活时的样式 */
+.active{
+    border-bottom: 5px solid black;
+}
+.inactive{
+    border:0px
+}
+
+#abc{
+    font-size: 40px;
+    width: 200px;
+    height: 300px;
+    color: darkorchid;
+}
+
