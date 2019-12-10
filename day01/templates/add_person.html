@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人员登记页面</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>出入人员管理系统</h1>
+<div>
+    人员性质(业主/访客): <input type="text" name="nature">
+</div>
+<div>
+    姓名: <input type="text" name="uname">
+</div>
+<div>
+    联系方式: <input type="text" name="tel">
+</div>
+<div>
+    住址: <input type="text" name="adress">
+</div>
+<button onclick="send_Post()">提交</button>
+<script src="/static/js/createXhr.js"></script>
+<script>
+    function send_Post() {
+        //创建xhr对象
+        xhr = create_xhr();
+        //建立链接
+        xhr.open("post","/add_person",true);
+        //监听事件
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200){
+                //console.log(xhr.responseText)
+                location.href = "http://127.0.0.1:5000"
+            }
+        };
+        //获取表单数据
+        var nature = document.getElementsByName("nature")[0].value;
+        var uname = document.getElementsByName("uname")[0].value;
+        var tel = document.getElementsByName("tel")[0].value;
+        var adress = document.getElementsByName("adress")[0].value;
+
+        var data = "nature=" + nature + "&uname=" + uname + "&tel=" + tel + "&adress=" + adress;
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xhr.send(data)
+    }
+
+</script>
+</body>
+</html>
+

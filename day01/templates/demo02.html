@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get请求</title>
+</head>
+<body>
+<button onclick="sendAjax()">发送ajax请求</button>
+<div id="show"></div>
+
+<script src="/static/js/createXhr.js"></script>
+<script>
+    function sendAjax() {
+       var xhr = create_xhr();
+    //创建请求 open(method,url,asyn)
+    xhr.open("get","/02-get",true);
+    //监听请求
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 0){
+            console.log("请求尚未初始化");
+        }else if(xhr.readyState == 1){
+            console.log("已经与服务器建立连接");
+        }else if(xhr.readyState == 2){
+            console.log("服务端已接收请求");
+        } else if(xhr.readyState == 3){
+            console.log("请求正在处理");
+        }else if(xhr.readyState == 4 && xhr.status == 200){
+            console.log("响应完成");
+            //响应状态码为200　表示数据已经成功响应给浏览器
+            //可以通过xhr.responseText获取响应字符串
+            console.log(xhr.responseText);
+            document.getElementById("show").innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send(null)
+    }
+</script>
+</body>
+</html>

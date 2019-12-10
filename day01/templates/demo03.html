@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post请求</title>
+</head>
+<body>
+
+    <div>
+        姓名：　<input type="text" name="uname">
+    </div>
+    <div>
+        年龄：　<input type="text" name="age">
+    </div>
+    <button onclick="send_post()">提交</button>
+    <dic id="show"></dic>
+
+
+<script src="/static/js/createXhr.js"></script>
+
+<script>
+    function send_post() {
+
+        var xhr = create_xhr();
+        xhr.open("post","/03-post",true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200){
+                document.getElementById("show").innerHTML = xhr.responseText;
+            }
+
+        };
+        //获取表单中的文本框的值
+        var uname = document.getElementsByName("uname")[0].value;
+//        var uname = "laowang";
+        var age = document.getElementsByName("age")[0].value;
+//        var age = 30;
+        var data = "uname=" + uname + "&age=" + age;
+        //修改数据类型
+        //post默认以普通的文本形式提交　后端无法接收数据
+        //需要将Content-Type改为application/x-www-form-urlencoded
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        //?key=value&key=value......
+        xhr.send(data);
+    }
+
+</script>
+</body>
+</html>

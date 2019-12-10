@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post请求</title>
+</head>
+<body>
+<div>
+    姓名： <input type="text" name="uname">
+</div>
+<div>
+    密码： <input type="password" name="upwd">
+</div>
+<button onclick="send_Post()">提交</button>
+<script src="/static/js/createXhr.js"></script>
+<script>
+    function send_Post() {
+        //创建xhr对象
+        xhr = create_xhr();
+        //建立链接
+        xhr.open("post","/get-post",true);
+        //监听事件
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200){
+                console.log(xhr.responseText)
+            }
+        };
+        //获取表单数据
+        var uname = document.getElementsByName("uname")[0].value;
+        var upwd = document.getElementsByName("upwd")[0].value;
+
+        var data = "uname=" + uname + "&upwd=" + upwd;
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xhr.send(data)
+    }
+
+</script>
+</body>
+</html>

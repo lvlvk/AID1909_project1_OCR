@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+</head>
+<body>
+<h1>图书管理系统</h1>
+<a href="/add">添加图书</a>
+
+{% if title%}
+<table>
+    <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+        <th>出版社</th>
+    </tr>
+    <tr>
+        <td>{{title}}</td>
+        <td>{{author}}</td>
+        <td>{{price}}</td>
+        <td>{{pub}}</td>
+    </tr>
+</table>
+{% endif %}
+</body>
+</html>

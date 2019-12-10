@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get请求练习</title>
+</head>
+<body>
+<input type="text" name="search">
+<button onclick="send_post()">发送get请求</button>
+<div id="show"></div>
+<script src="/static/js/createXhr.js"></script>
+<script>
+    function send_post() {
+        //创建xhr对象
+        var xhr = create_xhr();
+        //建立函数
+        var value = document.getElementsByName("search")[0].value;
+        xhr.open("get","/exercise-get?search="+value,true);
+        //监听事件
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200){
+                document.getElementById("show").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send(null);
+
+    }
+
+
+</script>
+</body>
+</html>
